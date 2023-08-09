@@ -1,69 +1,46 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+@import url(./blocks/page/page.css);
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/content/content.css);
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__avatar/profile__avatar.css);
+@import url(./blocks/profile/__info/profile__info.css);
+@import url(./blocks/profile/__username/profile__username.css);
+@import url(./blocks/profile/__about/profile__about.css);
+@import url(./blocks/profile/__edit-btn/profile__edit-btn.css);
+@import url(./blocks/profile/__add-btn/profile__add-btn.css);
+@import url(./blocks/profile/__avatar-btn/profile__avatar-btn.css);
+@import url(./blocks/cards/cards.css);
+@import url(./blocks/card/card.css);
+@import url(./blocks/card/__image/card__image.css);
+@import url(./blocks/card/__caption/card__caption.css);
+@import url(./blocks/card/__title/card__title.css);
+@import url(./blocks/card/__like-container/card__like-container.css);
+@import url(./blocks/card/__like-btn/card__like-btn.css);
+@import url(./blocks/card/__like-btn/_active/card__like-btn_active.css);
+@import url(./blocks/card/__like-count/card__like-count.css);
+@import url(./blocks/card/__trash-btn/card__trash-btn.css);
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__copyright/footer__copyright.css);
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/popup/__container/popup__container.css);
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__form/popup__form.css);
+@import url(./blocks/popup/__input/popup__input.css);
+@import url(./blocks/popup/__close-btn/popup__close-btn.css);
+@import url(./blocks/popup/__submit-btn/popup__submit-btn.css);
+@import url(./blocks/popup/__submit-btn/_disabled/popup__submit-btn_disabled.css);
+@import url(./blocks/popup/__image/popup__image.css);
+@import url(./blocks/popup/__caption/popup__caption.css);
+@import url(./blocks/popup/__figure/popup__figure.css);
+@import url(./blocks/popup/__open-image/popup__open-image.css);
+@import url(./blocks/popup/__input-error/popup__input-error.css);
+@import url(./blocks/popup/__input-error/_active/popup__input-error_active.css);
+@import url(./blocks/popup/__input/_invalid/popup__input_invalid.css);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+/**{
+    outline: 1px red solid;
+}*/
