@@ -11,9 +11,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([userInfo, initialCards]) => {
-        //console.log(userInfo);
-        //console.log(newCards);
-        console.log(initialCards);
         setUserName(userInfo.name);
         setUserDescription(userInfo.about);
         setUserAvatar(userInfo.avatar);
@@ -22,8 +19,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       .catch((err) => {
         console.log(err);
       });
-    //     .catch(api.catch);
-    // //   api.getInitialCards().then(setCards).catch(api.catch);
   }, []);
 
   return (
@@ -55,7 +50,11 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         ></button>
       </section>
 
-      <section className="cards" aria-label="галерея фото"></section>
+      <section className="cards" aria-label="галерея фото">
+        {cards.map((card) => (
+          <Card key={card._id} card={card} onCardClick={onCardClick} />
+        ))}
+      </section>
     </main>
   );
 }
