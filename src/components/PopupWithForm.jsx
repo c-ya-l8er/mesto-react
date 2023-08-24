@@ -7,7 +7,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
           className="popup__close-btn"
           type="button"
           aria-label="Закрыть"
-        ></button>
+        />
         <h2 className="popup__title">{`${title}`}</h2>
         <form
           className={`popup__form popup__form_${name}`}

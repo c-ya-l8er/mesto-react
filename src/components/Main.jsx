@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import api from "../utils/Api.jsx";
 import Card from "./Card.jsx";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.jsx";
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  const currentUser = useContext(CurrentUserContext);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userInfo, initialCards]) => {
-        setUserName(userInfo.name);
-        setUserDescription(userInfo.about);
-        setUserAvatar(userInfo.avatar);
+    Promise.all([api.getInitialCards()])
+      .then(([initialCards]) => {
         setCards(initialCards);
       })
       .catch((err) => {
@@ -30,24 +26,28 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
           type="button"
           aria-label="Редактировать"
         >
-          <img className="profile__avatar" src={userAvatar} alt="Аватар" />
+          <img
+            className="profile__avatar"
+            src={currentUser.avatar}
+            alt="Аватар"
+          />
         </button>
         <div className="profile__info">
-          <h1 className="profile__username">{userName}</h1>
+          <h1 className="profile__username">{currentUser.name}</h1>
           <button
             onClick={onEditProfile}
             className="profile__edit-btn"
             type="button"
             aria-label="Редактировать"
-          ></button>
-          <p className="profile__about">{userDescription}</p>
+          />
+          <p className="profile__about">{currentUser.about}</p>
         </div>
         <button
           onClick={onAddPlace}
           className="profile__add-btn"
           type="button"
           aria-label="Добавить"
-        ></button>
+        />
       </section>
 
       <section className="cards" aria-label="галерея фото">
