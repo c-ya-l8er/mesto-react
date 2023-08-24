@@ -1,15 +1,28 @@
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.jsx";
 
-function Card({ card, onCardClick }) {
+function Card({ card, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
-  const cardLikeButtonClassName = (`card__like-btn ${isLiked && "card__like-btn_active"}`);
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const cardLikeButtonClassName = `card__like-btn ${
+    isLiked && "card__like-btn_active"
+  }`;
+
   //console.log(currentUser._id);
   function handleClick() {
     onCardClick(card);
   }
+
+  function handleLikeClick() {
+    onCardLike(card);
+    //console.log("тыц-тыц");
+  }
+
+  function handleDeleteClick() {
+    onCardDelete(card);
+  }
+
   return (
     <article className="card">
       <img
@@ -21,12 +34,18 @@ function Card({ card, onCardClick }) {
       <div className="card__caption">
         <h2 className="card__title">{card.name}</h2>
         <div className="card__like-container">
-          <button className="card__like-btn" type="button" aria-label="Лайк" />
+          <button
+            onClick={handleLikeClick}
+            className={cardLikeButtonClassName}
+            type="button"
+            aria-label="Лайк"
+          />
           <span className="card__like-count">{card.likes.length}</span>
         </div>
       </div>
       {isOwn && (
-        <button onClick={handleDeleteClick}
+        <button
+          onClick={handleDeleteClick}
           className="card__trash-btn"
           type="button"
           aria-label="Корзина"
