@@ -1,21 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.jsx";
 import PopupWithForm from "./PopupWithForm.jsx";
 
-function EditProfilePopup({ isOpen, onClose }) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const currentUser = React.useContext(CurrentUserContext);
+function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+  const currentUser = useContext(CurrentUserContext);
+  const [name, setName] = useState(currentUser.name);
+  const [description, setDescription] = useState(currentUser.about);
+  
 
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
   }, [currentUser]);
 
-//   function handleChange(e) {
-//     setName(e.target.value);
-//     setDescription(e.target.value);
-//   }
+  function handleChange(e) {
+    let value = e.target.value;
+    let inputName = e.target.name;
+    if (inputName == "name") {
+      setName(value);
+    } else if (inputName == "about") {
+      setDescription(value);
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateUser({
+      name,
+      about: description,
+    });
+  }
 
   return (
     <PopupWithForm
@@ -23,11 +37,11 @@ function EditProfilePopup({ isOpen, onClose }) {
       name="edit-profile"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <input
-        //onChange={handleChange}
-        onChange={e => setName(e.target.value)}
-        defaultValue={name}
+        onChange={handleChange}
+        value={name || ""}
         className="popup__input popup__input_type_username"
         id="username-input"
         minLength="2"
@@ -39,9 +53,8 @@ function EditProfilePopup({ isOpen, onClose }) {
       />
       <span className="popup__input-error username-input-error" />
       <input
-        //onChange={handleChange}
-        onChange={e => setDescription(e.target.value)}
-        defaultValue={description}
+        onChange={handleChange}
+        value={description || ""}
         className="popup__input popup__input_type_about"
         id="about-input"
         minLength="2"
