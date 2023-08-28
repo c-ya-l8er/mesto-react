@@ -11,8 +11,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   }, [isOpen]);
 
   function handleChange(e) {
-    let value = e.target.value;
-    let inputName = e.target.name;
+    const value = e.target.value;
+    const inputName = e.target.name;
     if (inputName == "name") {
       setName(value);
     } else if (inputName == "link") {
@@ -35,6 +35,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      submitBtnText={"Создать"}
     >
       <input
         onChange={handleChange}
