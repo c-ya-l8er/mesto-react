@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.jsx";
 
-function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+function Card({ card, onCardClick, onCardLike, onCardDeleteClick }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -9,19 +9,16 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     isLiked && "card__like-btn_active"
   }`;
 
-  //console.log(currentUser._id);
   function handleClick() {
     onCardClick(card);
   }
 
   function handleLikeClick() {
     onCardLike(card);
-    //console.log("тыц-тыц");
   }
 
   function handleDeleteClick() {
-    onCardDelete(card);
-    //console.log("тыц-тыц");
+    onCardDeleteClick(card);
   }
 
   return (

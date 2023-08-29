@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm.jsx";
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
 
@@ -36,6 +36,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       submitBtnText={"Создать"}
+      loadingBtnText={"Создание..."}
+      isLoading={isLoading}
     >
       <input
         onChange={handleChange}
